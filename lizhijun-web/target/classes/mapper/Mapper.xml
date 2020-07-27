@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper   
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lizhijun.mapper.MeetMapper">
+	<select id="queryMeet" parameterType="com.lizhijun.bean.Meet" resultType="map">
+		select m.*,tname from meeting m,type t where m.tid=t.tid
+	</select>
+	
+	<select id="queryType" parameterType="com.lizhijun.bean.Type">
+		select * from type 
+	</select>
+	
+	<insert id="addMeet" parameterType="com.lizhijun.bean.Meet">
+		insert into meet
+		(code,mname,start_time,end_time,tname)
+		values
+		(#{code},#{mname},#{start_time},#{end_time},#{tname})
+	</insert>
+	
+	<update id="updateMeet" parameterType="com.lizhijun.bean.Meet">
+		update meet set
+		(code=#{code},mname=#{mname},start_time=#{start_time},end_time=#{end_time},tname=#{tname})
+		where m.mid=#{mid}
+	</update>
+</mapper>
